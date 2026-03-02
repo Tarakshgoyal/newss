@@ -22,20 +22,29 @@ export default function Header() {
           LIVE
         </div>
         
-        <div className="text-right flex flex-col items-end">
-          <div className="text-sm font-mono text-dash-text">12:53:37 AM</div>
-          <div className="text-[10px] text-dash-text-muted flex items-center gap-2">
-            System Status
-            <div className="flex gap-1">
-              <div className="w-2 h-1 bg-[#2ebd6e] rounded-sm"></div>
-              <div className="w-2 h-1 bg-[#2ebd6e] rounded-sm"></div>
-              <div className="w-2 h-1 bg-[#2ebd6e] opacity-30 rounded-sm"></div>
+        <div className="flex items-center gap-6 text-xs text-dash-text-muted font-medium ml-4 border-l border-dash-border/50 pl-6">
+          <div className="flex flex-col gap-1 items-end">
+            <div className="flex justify-between w-24"><span>Network</span> <span className="text-dash-accent text-[10px]">ACTIVE</span></div>
+            <div className="w-24 h-1 bg-dash-bg rounded-full overflow-hidden">
+               <div className="w-[85%] h-full bg-dash-accent"></div>
             </div>
+          </div>
+          <div className="flex flex-col gap-1 items-end">
+             <div className="flex justify-between w-24"><span>System</span> <span className="text-[#a855f7] text-[10px]">92%</span></div>
+             <div className="w-24 h-1 bg-dash-bg rounded-full overflow-hidden">
+               <div className="w-[92%] h-full bg-[#a855f7]"></div>
+             </div>
+          </div>
+          <div className="flex flex-col gap-1 items-end">
+             <div className="flex justify-between w-24"><span>Law</span> <span className="text-dash-green text-[10px]">STABLE</span></div>
+             <div className="w-24 h-1 bg-dash-bg rounded-full overflow-hidden">
+               <div className="w-[100%] h-full bg-dash-green"></div>
+             </div>
           </div>
         </div>
         
-        <button className="text-dash-text-muted hover:text-white transition-colors bg-dash-panel p-2 rounded">
-          <Settings className="w-5 h-5" />
+        <button className="text-dash-text-muted hover:text-white transition-colors bg-dash-panel p-2 rounded ml-2 border border-dash-border">
+          <Settings className="w-4 h-4" />
         </button>
       </div>
     </header>

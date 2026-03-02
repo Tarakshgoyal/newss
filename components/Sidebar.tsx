@@ -31,14 +31,17 @@ export default function Sidebar() {
               <Link 
                 key={index}
                 href="#" 
-                className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
+                className={`flex items-center gap-3 px-4 py-3 transition-colors relative ${
                   item.active 
-                    ? 'bg-dash-panel text-white' 
+                    ? 'text-dash-accent bg-[#0f1b29]' 
                     : 'text-dash-text-muted hover:bg-dash-panel hover:text-white'
                 }`}
               >
-                <Icon className="w-5 h-5 opacity-80" />
-                <span className="text-sm font-medium">{item.label}</span>
+                {item.active && (
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-dash-accent rounded-r-sm"></div>
+                )}
+                <Icon className={`w-5 h-5 ${item.active ? 'opacity-100' : 'opacity-80'}`} />
+                <span className={`text-sm ${item.active ? 'font-semibold' : 'font-medium'}`}>{item.label}</span>
               </Link>
             );
           })}

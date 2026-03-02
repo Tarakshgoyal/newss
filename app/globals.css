@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-dash-bg: #0b101e;
-  --color-dash-panel: #161c2d;
-  --color-dash-sidebar: #111726;
+  --color-dash-bg: #090f18; /* Deeper space blue/black */
+  --color-dash-panel: #111a28; /* Slightly lighter for panels */
+  --color-dash-sidebar: #0d141f; /* sidebar color */
   --color-dash-text: #e2e8f0;
-  --color-dash-text-muted: #94a3b8;
-  --color-dash-border: #2a3143;
-  --color-dash-accent: #22d3ee;
-  --color-dash-red: #ef4444;
+  --color-dash-text-muted: #64748b;
+  --color-dash-border: #1e293b;
+  --color-dash-accent: #38bdf8; /* Lighter cyan */
+  --color-dash-red: #ef4444; 
+  --color-dash-orange: #f97316; /* For warning states in new map */
   --color-dash-yellow: #eab308;
   --color-dash-green: #22c55e;
 }
 
 :root {
-  --background: #0b101e;
+  --background: #090f18;
   --foreground: #e2e8f0;
 }
 

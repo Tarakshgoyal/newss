@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker, Line, ZoomableGroup } from "react-simple-maps";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -30,12 +31,12 @@ const MapData: Record<string, "high" | "warning" | "stable"> = {
   "VEN": "high",
 };
 
-// Colors mapping
+// Colors mapping based on the sleek new design
 const statusColors = {
-  high: "#8b2c39", // Dark red
-  warning: "#c08a40", // Orange/yellow
-  stable: "#2ebd6e", // Green
-  default: "#1e3046" // Default map color (dark sea blue-ish)
+  high: "#d32f2f", // Brighter Red
+  warning: "#f57c00", // Bright Orange
+  stable: "#26a69a", // Bright Cyan/Teal
+  default: "#1e293b" // Slate Navy base
 };
 
 // Mock nodes for lines
@@ -61,6 +62,9 @@ const lines = [
 ];
 
 export default function HeatMap() {
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+
   return (
     <div className="w-full h-full flex flex-col bg-[#141d2b] overflow-hidden rounded-lg border border-dash-border">
       {/* Header */}
@@ -106,8 +110,16 @@ export default function HeatMap() {
                       key={geo.rsmKey}
                       geography={geo}
                       fill={color}
-                      stroke="#192a3e"
+                      stroke="#0f172a"
                       strokeWidth={0.5}
+                      onMouseEnter={(e) => {
+                        setHoveredCountry(geo.properties.name);
+                        setTooltipPos({ x: e.clientX, y: e.clientY });
+                      }}
+                      onMouseMove={(e) => {
+                        setTooltipPos({ x: e.clientX, y: e.clientY });
+                      }}
+                      onMouseLeave={() => setHoveredCountry(null)}
                       style={{
                         default: { outline: "none" },
                         hover: { outline: "none", opacity: 0.8 },
@@ -145,6 +157,44 @@ export default function HeatMap() {
             ))}
           </ZoomableGroup>
         </ComposableMap>
+
+        {/* Classified Data Card Tooltip */}
+        {hoveredCountry && (
+          <div 
+            className="absolute z-50 bg-[#111a28]/95 backdrop-blur border border-dash-border rounded-lg p-4 shadow-2xl pointer-events-none min-w-[280px]"
+            style={{ 
+              left: tooltipPos.x + 15, 
+              top: tooltipPos.y - 100 
+            }}
+          >
+            <div className="text-[10px] text-dash-text-muted font-bold tracking-widest mb-1">{hoveredCountry.toUpperCase()} - Classified Data Card</div>
+            <div className="space-y-1.5 mt-3 text-xs">
+              <div className="flex justify-between items-center">
+                <span className="text-dash-text-muted">Stability Index:</span>
+                <span className="text-dash-orange">3.5 (Low)</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-dash-text-muted">Security Risk Level:</span>
+                <span className="text-dash-red">CRITICAL (8.9)</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-dash-text-muted">Economic Health Score:</span>
+                <span className="text-dash-orange">4.1 (Strained)</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-dash-text-muted">Diplomatic Alignment:</span>
+                <span className="text-dash-text">Hostile/Non-Aligned</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-dash-text-muted">Active Conflicts:</span>
+                <span className="text-dash-text">4 (Regional Proxy)</span>
+              </div>
+              <div className="pt-2 mt-2 border-t border-dash-border">
+                <span className="text-dash-text leading-tight block">AI Assessment: High Probability of Cyber and Proxy Escalation in Q4</span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
