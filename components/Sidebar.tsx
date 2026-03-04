@@ -1,16 +1,21 @@
+"use client";
+
 import { Globe, ShieldAlert, BarChart3, Shield, Cpu, Cloud, BrainCircuit, Bell, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   const navItems = [
-    { icon: Globe, label: 'Global Overview', active: true },
-    { icon: ShieldAlert, label: 'Geopolitics' },
-    { icon: BarChart3, label: 'Economy' },
-    { icon: Shield, label: 'Defense' },
-    { icon: Cpu, label: 'Technology' },
-    { icon: Cloud, label: 'Climate' },
-    { icon: BrainCircuit, label: 'AI Insights' },
-    { icon: Bell, label: 'Alerts' },
+    { icon: Globe, label: 'Global Overview', href: '/' },
+    { icon: ShieldAlert, label: 'Geopolitics', href: '#' },
+    { icon: BarChart3, label: 'Economy', href: '#' },
+    { icon: Shield, label: 'Defense', href: '#' },
+    { icon: Cpu, label: 'Technology', href: '#' },
+    { icon: Cloud, label: 'Climate', href: '/climate' },
+    { icon: BrainCircuit, label: 'AI Insights', href: '#' },
+    { icon: Bell, label: 'Alerts', href: '#' },
   ];
 
   return (
@@ -27,21 +32,23 @@ export default function Sidebar() {
         <nav className="p-4 space-y-1">
           {navItems.map((item, index) => {
             const Icon = item.icon;
+            const isActive = pathname === item.href || (item.href !== '#' && pathname?.startsWith(item.href) && item.href !== '/');
+
             return (
               <Link 
                 key={index}
-                href="#" 
+                href={item.href} 
                 className={`flex items-center gap-3 px-4 py-3 transition-colors relative ${
-                  item.active 
+                  isActive 
                     ? 'text-dash-accent bg-[#0f1b29]' 
                     : 'text-dash-text-muted hover:bg-dash-panel hover:text-white'
                 }`}
               >
-                {item.active && (
+                {isActive && (
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-dash-accent rounded-r-sm"></div>
                 )}
-                <Icon className={`w-5 h-5 ${item.active ? 'opacity-100' : 'opacity-80'}`} />
-                <span className={`text-sm ${item.active ? 'font-semibold' : 'font-medium'}`}>{item.label}</span>
+                <Icon className={`w-5 h-5 ${isActive ? 'opacity-100' : 'opacity-80'}`} />
+                <span className={`text-sm ${isActive ? 'font-semibold' : 'font-medium'}`}>{item.label}</span>
               </Link>
             );
           })}

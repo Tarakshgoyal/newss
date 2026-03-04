@@ -1,6 +1,10 @@
 import { AlertTriangle, Settings } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  title?: string;
+}
+
+export default function Header({ title }: HeaderProps) {
   return (
     <header className="h-16 border-b border-dash-border bg-dash-bg flex items-center justify-between px-6 sticky top-0 z-10 w-full">
       <div className="flex items-center">
@@ -9,11 +13,15 @@ export default function Header() {
           RESTRICTED ACCESS
         </div>
       </div>
-      
-      <div className="flex-1 flex justify-center">
-        <h1 className="text-2xl font-bold tracking-wider text-white">
+      <div className="flex-1 flex justify-center items-center gap-2 md:gap-4 shrink-0 overflow-hidden px-2">
+        <h1 className="text-lg md:text-xl xl:text-2xl font-bold tracking-wider text-white whitespace-nowrap truncate">
           GLOBAL ONTOLOGY ENGINE
         </h1>
+        {title && (
+          <div className="bg-[#164e63] border border-[#22d3ee]/30 text-[#22d3ee] px-2 py-0.5 rounded text-sm font-semibold tracking-wide">
+            {title}
+          </div>
+        )}
       </div>
       
       <div className="flex items-center gap-6">
