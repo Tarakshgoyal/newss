@@ -12,6 +12,20 @@
   --color-dash-orange: #f97316; /* For warning states in new map */
   --color-dash-yellow: #eab308;
   --color-dash-green: #22c55e;
+
+  /* Economic Intelligence Dashboard Colors */
+  --color-eco-bg: #0f1724;
+  --color-eco-panel: #141d2b;
+  --color-eco-panel-sec: #192436;
+  --color-eco-border: #1f2a3a;
+  --color-eco-text: #f8fafc;
+  --color-eco-text-muted: #94a3b8;
+  --color-eco-green: #22c55e;
+  --color-eco-yellow: #eab308;
+  --color-eco-orange: #f97316;
+  --color-eco-red: #ef4444;
+  --color-eco-cyan: #06b6d4;
+  --color-eco-teal: #14b8a6;
 }
 
 :root {

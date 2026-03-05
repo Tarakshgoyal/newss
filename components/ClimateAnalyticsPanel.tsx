@@ -1,7 +1,7 @@
 "use client";
 
 import { MoreHorizontal } from "lucide-react";
-import { 
+import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer,
   Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
   PieChart, Pie
@@ -47,7 +47,7 @@ export default function ClimateAnalyticsPanel() {
       </div>
 
       <div className="flex-1 p-4 overflow-y-auto custom-scrollbar flex flex-col gap-6">
-        
+
         {/* Assessment Card */}
         <div className="bg-[#111a28] border border-dash-border/60 rounded p-3">
           <div className="flex justify-between items-center">
@@ -67,10 +67,10 @@ export default function ClimateAnalyticsPanel() {
           <div className="flex-1 -ml-4">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={temperatureData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                 <defs>
+                <defs>
                   <linearGradient id="tempGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
@@ -84,8 +84,8 @@ export default function ClimateAnalyticsPanel() {
 
         {/* Mini Gauges Row */}
         <div className="grid grid-cols-2 gap-4 h-[110px]">
-           {/* Drought Severity */}
-           <div className="flex flex-col items-center relative bg-[#111a28] border border-dash-border/50 rounded-md py-2 px-1 overflow-hidden">
+          {/* Drought Severity */}
+          <div className="flex flex-col items-center relative bg-[#111a28] border border-dash-border/50 rounded-md py-2 px-1 overflow-hidden">
             <h3 className="text-[10px] font-bold uppercase tracking-wide text-dash-text-muted w-full text-center z-10">Drought Index</h3>
             <div className="w-full flex-1 relative flex items-end justify-center mt-2">
               <div className="absolute inset-0">
@@ -100,13 +100,13 @@ export default function ClimateAnalyticsPanel() {
                 </ResponsiveContainer>
               </div>
               <div className="z-10 pb-1">
-                 <span className="text-xs font-bold text-dash-orange">SEVERE</span>
+                <span className="text-xs font-bold text-dash-orange">SEVERE</span>
               </div>
             </div>
           </div>
 
           {/* Carbon Concentration */}
-           <div className="flex flex-col items-center relative bg-[#111a28] border border-dash-border/50 rounded-md py-2 px-1 overflow-hidden">
+          <div className="flex flex-col items-center relative bg-[#111a28] border border-dash-border/50 rounded-md py-2 px-1 overflow-hidden">
             <h3 className="text-[10px] font-bold uppercase tracking-wide text-dash-text-muted w-full text-center z-10">Carbon PPM</h3>
             <div className="w-full flex-1 relative flex items-end justify-center mt-2">
               <div className="absolute inset-0">
@@ -121,10 +121,19 @@ export default function ClimateAnalyticsPanel() {
                 </ResponsiveContainer>
               </div>
               <div className="z-10 pb-1">
-                 <span className="text-xs font-bold text-[#38bdf8]">422</span>
+                <span className="text-xs font-bold text-[#38bdf8]">422</span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* AI Climate Forecast Text Panel */}
+        <div className="flex flex-col bg-[#0b121d] border border-dash-border p-3 rounded-md">
+          <h3 className="text-xs font-bold uppercase tracking-wide text-dash-text-muted mb-2 border-b border-dash-border/50 pb-2">AI Climate Forecast</h3>
+          <p className="text-[10px] text-dash-text leading-relaxed">
+            <span className="font-bold text-[#38bdf8] block mb-1 uppercase text-xs">Strategic Implications:</span>
+            Increasing frequency of extreme weather events poses significant risks to global supply chains, energy security, and geopolitical stability. Resource scarcity in drought-prone regions may lead to conflict. Proactive climate resilience measures are crucial for national security. Focus on coastal defense and disaster response capabilities.
+          </p>
         </div>
 
         {/* Radar Chart */}
@@ -140,15 +149,6 @@ export default function ClimateAnalyticsPanel() {
               </RadarChart>
             </ResponsiveContainer>
           </div>
-        </div>
-
-        {/* AI Climate Forecast Text Panel */}
-        <div className="flex flex-col bg-[#0b121d] border border-dash-border p-3 rounded-md">
-           <h3 className="text-xs font-bold uppercase tracking-wide text-dash-text-muted mb-2 border-b border-dash-border/50 pb-2">AI Climate Forecast</h3>
-           <p className="text-[10px] text-dash-text leading-relaxed">
-             <span className="font-bold text-[#38bdf8] block mb-1 uppercase text-xs">Strategic Implications:</span>
-             Increasing frequency of extreme weather events poses significant risks to global supply chains, energy security, and geopolitical stability. Resource scarcity in drought-prone regions may lead to conflict. Proactive climate resilience measures are crucial for national security. Focus on coastal defense and disaster response capabilities.
-           </p>
         </div>
 
       </div>
